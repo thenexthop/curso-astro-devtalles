@@ -6,17 +6,13 @@ author: jane-doe
 image: 'images/post-01.png'
 tags: [JavaScript, ES6, Programming]
 
-# layout: ../../layouts/BlogLayout.astro
-
 ---
 
-{/* layout: ../../layouts/BlogLayout.astro */}
-
-# { frontmatter.title }
+# Explorando Funciones de ES6
 
 ### Número Random { Math.ceil((Math.random() * 10)) }
 
-{/*<!-- Mostrar imagen -->*/}
+<!-- Mostrar imagen -->
 
 <img src="/assets/images/post-01.png" width="350" alt="Explorando Funciones de ES6" />
 
