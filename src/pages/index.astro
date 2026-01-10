@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "@/layouts/MainLayout.astro";
+import TypedBlogPost from "@/components/TypedBlogPost.astro";
+import { siteConfig } from "@/config/site-config";
+
+const blogPosts = await getCollection("blog");
+//console.log(blogPosts)
+---
+
+<MainLayout title="Mi primer Blog en Astro (Sección 05)">
+    <!-- component -->
+    <section class="bg-gray-950">
+        <div class="container px-6 py-8 mx-auto">
+            <h1 class="capitalize lg:text-4x">
+                {siteConfig.title}
+            </h1>
+            <a class="mr-2" href="/blog/1">Blog paginado</a>
+            <a class="mr-2" href="/authors">Autores</a>
+
+            <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+                {blogPosts.map((post) => <TypedBlogPost post={post} />)}
+            </div>
+        </div>
+    </section>
+</MainLayout>

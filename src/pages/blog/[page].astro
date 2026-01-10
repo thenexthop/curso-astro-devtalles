@@ -1,0 +1,69 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import TypedBlogPost from "@/components/TypedBlogPost.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+    const posts = await getCollection("blog");
+
+    return paginate(posts, { pageSize: 2 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<MainLayout>
+    <div class="py-2 mx-auto">
+        <h1 class="text-3xl capitalize lg:text-4xl">
+            TheNextHop's Blog paginado
+        </h1>
+    </div>
+
+    <section class="mt-6 md:mt-8" aria-label="Entradas de blog">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {page.data.map((post) => <TypedBlogPost post={post} />)}
+        </div>
+    </section>
+
+    <section
+        class="flex justify-between mt-8 mb-6 md:mt-8 md:mb-8"
+        aria-label="Controles"
+    >
+        <!--   page .. ?? prev   -->
+        <a
+            href={page.url.prev}
+            class:list={{
+                disabled: !page.url.prev,
+            }}>Anteriores</a
+        >
+
+        <!--   page .. ?? next   -->
+        <a
+            href={page.url.next}
+            class:list={{
+                disabled: !page.url.next,
+            }}>Siguientes</a
+        >
+    </section>
+</MainLayout>
+<style>
+    a {
+        color: white;
+        background-color: #09f;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+            color: #09f;
+        }
+
+        &.disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    }
+</style>

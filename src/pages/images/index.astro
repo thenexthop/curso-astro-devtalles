@@ -1,0 +1,49 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+
+import post05Img from "@/assets/images/post-05.png";
+import { Picture } from "astro:assets";
+---
+
+<MainLayout title="Componente Image en Astro">
+    <h1 class="text-3xl text-blue-400 my-5 font-bold">
+        Componente Image en Astro
+    </h1>
+
+    <img
+        loading="eager"
+        src="/assets/images/post-05.png"
+        alt="imagen de post"
+        width="250"
+        height="250"
+    />
+
+    <Image
+        src={post05Img}
+        style={{ width: "250px", height: "auto" }}
+        alt="imagen de post"
+        width={350}
+        height={350}
+    />
+    <Image src={post05Img} alt="imagen de post" width={250} height={250} />
+
+    <h2>Imagen con cambio de formato</h2>
+    <Image
+        src={post05Img}
+        format="avif"
+        style={{ width: "250px", height: "auto" }}
+        alt="imagen de post"
+        width={500}
+        height={500}
+    />
+    <h2>Imagen con atributo quality</h2>
+    <Image src={post05Img} quality="high" format="avif" alt="imagen de post" />
+    <h1>Componente Picture</h1>
+    <!-- formats={['webp', 'avif', 'jpeg', 'png']} -->
+    <!-- widths={[240, 540, 720, post05Img.width]}
+  sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${post05Img.width}px`} -->
+    <!-- width={post05Img.width / 2}
+  densities={[1.5, 2]} -->
+    <Picture src={post05Img} alt="Imagen del post" />
+</MainLayout>

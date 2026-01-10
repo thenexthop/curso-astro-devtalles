@@ -1,0 +1,71 @@
+---
+import type { GetStaticPaths } from "astro";
+import { Image } from "astro:assets";
+import { siteConfig } from "@/config/site-config";
+import MainLayout from "@/layouts/MainLayout.astro";
+import TypedBlogPost from "@/components/TypedBlogPost.astro";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async () => {
+    const [authors, blogPosts] = await Promise.all([
+        getCollection("author"),
+        getCollection("blog"),
+    ]);
+
+    return authors.map((author) => ({
+        params: { authorId: author.id },
+        props: {
+            author: author.data,
+            blogPosts: blogPosts.filter(
+                (post) => post.data.author.id === author.id,
+            ),
+        },
+    }));
+}) satisfies GetStaticPaths;
+
+const { blogPosts, author } = Astro.props;
+---
+
+<MainLayout>
+    <section>
+        <div class="container p-4 mx-auto">
+            <div class="flex flex-col gap-2 mb-6">
+                <h1 class="text-3xl font-semibold capitalize lg:text-4xl">
+                    {siteConfig.title}
+                </h1>
+                <a href="/">Regresar</a>
+            </div>
+
+            <div class="flex flex-row text-md text-gray-400 items-center gap-2">
+                <div>
+                    <Image
+                        class="rounded-full"
+                        src={author.avatar}
+                        alt={author.name}
+                        width={50}
+                        height={50}
+                    />
+                </div>
+
+                <div class="flex flex-col">
+                    <a class="hover:cursor-pointer">{author.name}</a>
+                    <span class="text-lg">Listado de todos mis posts</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+                {blogPosts.map((post) => <TypedBlogPost post={post} />)}
+            </div>
+        </div>
+    </section>
+</MainLayout>
+
+<style is:global>
+    a {
+        color: #3b82f6; /* text-blue-500 */
+    }
+
+    a:hover {
+        text-decoration: underline; /* hover:underline */
+    }
+</style>
