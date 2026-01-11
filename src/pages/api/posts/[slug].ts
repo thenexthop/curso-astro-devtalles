@@ -31,7 +31,16 @@ export const GET: APIRoute = async ({ params }) => {
 export const POST: APIRoute = async ({ request }) => {
 
     const body = await request.json()
-    //console.log(body)
+
+    if (!body) {
+        return new Response(
+            JSON.stringify({ error: "No data provided" }),
+            {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' }
+            }
+        )
+    }
 
     const resp = {
         method: "POST",
@@ -50,7 +59,16 @@ export const POST: APIRoute = async ({ request }) => {
 export const PUT: APIRoute = async ({ request }) => {
 
     const body = await request.json()
-    //console.log(body)
+
+    if (!body) {
+        return new Response(
+            JSON.stringify({ error: "No data provided" }),
+            {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' }
+            }
+        )
+    }
 
     const resp = {
         method: "PUT",
