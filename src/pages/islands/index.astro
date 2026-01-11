@@ -1,0 +1,37 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import Title from "@/components/shared/Title.astro";
+import { Counter } from "@/components/Counter";
+---
+
+<MainLayout title="Favoritos">
+    <Title>Islas</Title>
+    <video controls muted autoplay transition:persist="playing-video">
+        <source
+            src="https://ia804502.us.archive.org/33/items/GoldenGa1939_3/GoldenGa1939_3_512kb.mp4"
+            type="video/mp4"
+        />
+    </video>
+
+    <section class="mt-4">
+        <div
+            style={{
+                borderRadius: "16px",
+                height: "1000px",
+                backgroundColor: "orangered",
+                opacity: "0.1",
+            }}
+        >
+        </div>
+
+        <!-- <Counter client:load /> -->
+        <Counter
+            transition:persist="counter"
+            transition:persist-props
+            client:visible
+        >
+            <Title>Contador con "children props"</Title>
+        </Counter>
+        <!-- initValue={8} -->
+    </section>
+</MainLayout>

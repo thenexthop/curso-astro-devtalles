@@ -1,0 +1,44 @@
+---
+//import type { PokemonDetailsResponse } from "@/interfaces/pokemon-details.response";
+
+interface Props {
+    name: string;
+    url: string;
+    isBig?: boolean;
+}
+
+const { name, url, isBig = false } = Astro.props;
+
+console.log(url);
+const pokemonId = url.split("/").at(-2);
+---
+
+<!-- <a href={`/pokemon/${pokemonId}`}> -->
+<a href={`/pokemons/${name}`}>
+    <article
+        class:list={[
+            "flex flex-col items-center justify-between p-6 gap-4 text-amber-100 rounded-md",
+            {
+                "border border-amber-200 bg-gray-600/30": !isBig,
+            },
+        ]}
+    >
+        <img
+            transition:name={`img-${name}`}
+            class:list={[{ "w-52 h-52": isBig }, { "w-20 h-20": !isBig }]}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`}
+            alt={`image of the pokemon ${name}`}
+        />
+        <h2
+            class:list={[
+                "capitalize font-semibold",
+                {
+                    "text-3xl text-amber-300": isBig,
+                },
+            ]}
+        >
+            #{pokemonId}
+            {name}
+        </h2>
+    </article>
+</a>
