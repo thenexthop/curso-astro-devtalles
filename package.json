@@ -1,0 +1,30 @@
+{
+  "name": "seccion-07",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/rss": "^4.0.14",
+    "@astrojs/sitemap": "^3.6.1",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "astro": "^5.16.8",
+    "dotenv": "^17.2.3",
+    "pg": "^8.16.3",
+    "sharp": "^0.34.3",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.16.0",
+    "prisma": "^7.2.0",
+    "tsx": "^4.21.0",
+    "wrangler": "^4.58.0"
+  }
+}
