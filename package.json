@@ -9,6 +9,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.11"
+    "@astrojs/netlify": "^6.6.4",
+    "@neondatabase/serverless": "^1.0.2",
+    "@prisma/adapter-neon": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.11",
+    "bcryptjs": "^3.0.3",
+    "better-auth": "^1.4.15",
+    "dotenv": "^17.2.3",
+    "sweetalert2": "^11.26.17",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.9",
+    "prisma": "^7.2.0"
   }
 }

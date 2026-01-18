@@ -1,16 +1,21 @@
 ---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { auth } from "@/lib/auth";
 
+export const prerender = false;
+
+const session = await auth.api.getSession({
+	headers: Astro.request.headers,
+});
+
+const { user, ...rest } = session ?? {};
+//console.log(user);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Astro auth app">
+	<h1 class="text-3xl text-slate-800 font-bold">Astro auth app</h1>
+	<code>
+		{user && <pre>{JSON.stringify(user, null, 2)}</pre>}
+		{rest && <pre>{JSON.stringify(rest, null, 2)}</pre>}
+	</code>
+</MainLayout>
