@@ -1,0 +1,20 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+
+export const prerender = false;
+
+//const session = await auth.api.getSession({
+//	headers: Astro.request.headers,
+//});
+
+//const { user, ...rest } = session ?? {};
+//console.log(user);
+---
+
+<MainLayout title="Astro auth app">
+	<h1 class="text-3xl text-slate-800 font-bold">Astro auth app</h1>
+	<code>
+		<pre>{JSON.stringify({ temp: "TODO" }, null, 2)}</pre>
+		<pre>{JSON.stringify({ temp: "TODO" }, null, 2)}</pre>
+	</code>
+</MainLayout>

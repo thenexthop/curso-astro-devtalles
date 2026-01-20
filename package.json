@@ -9,6 +9,23 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.11"
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/vercel": "^9.0.4",
+    "@clerk/astro": "^2.16.13",
+    "@prisma/adapter-neon": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.16.11",
+    "dotenv": "^17.2.3",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "swiper": "^12.0.3",
+    "tailwindcss": "^4.1.18",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^7.2.0"
   }
 }

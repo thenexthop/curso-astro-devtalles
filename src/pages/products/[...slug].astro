@@ -1,0 +1,114 @@
+---
+import { actions } from "astro:actions";
+import MainLayout from "@/layouts/MainLayout.astro";
+import ProductSlideShow from "@/components/products/ProductSlideShow.astro";
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+const { data: product, error } = await Astro.callAction(
+    actions.getProductBySlug,
+    slug ?? "",
+);
+
+if (error) {
+    console.log(error);
+    return Astro.redirect("/404");
+}
+
+const images = product.product_image.map((image) => image.image ?? "");
+---
+
+<!-- description={product.description || ""}
+image={images[0] || ""} -->
+<MainLayout title={product.title ?? ""}>
+    <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-4">
+        <ProductSlideShow images={images} />
+
+        <section>
+            <h2 class="text-2xl font-bold">{product.title}</h2>
+            <h2 class="font-bold">${product.price}</h2>
+
+            <h3 class="mt-5">Tallas</h3>
+            <ul class="flex gap-3">
+                {
+                    product.sizes
+                        ?.split(",")
+                        .map((size) => <li data-size={size}>{size}</li>)
+                }
+            </ul>
+
+            <h3 class="mt-5">Cantidad</h3>
+            <div>
+                <button class="btn-quantity">-</button>
+                <input type="number" min="1" value="1" />
+                <button class="btn-quantity">+</button>
+            </div>
+
+            <button class="mt-5 bg-blue-500 text-white p-3 w-full"
+                >Añadir al carrito</button
+            >
+
+            <h3 class="mt-10">Descripción</h3>
+            <p>{product.description}</p>
+        </section>
+    </div>
+
+    <input type="hidden" id="product-id" value={product.id} />
+</MainLayout>
+
+<script>
+    const sizeElements = document.querySelectorAll("li");
+</script>
+
+<style is:inline>
+    h3 {
+        font-weight: bold;
+    }
+
+    li {
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .selected-size {
+        text-decoration: underline;
+        font-weight: bold;
+        transition: all;
+    }
+
+    .btn-quantity {
+        width: 10;
+        text-align: center;
+        padding: 2;
+        border: 1;
+        border-color: gray;
+        cursor: pointer;
+
+        &:hover {
+            background-color: gray;
+        }
+    }
+
+    input {
+        width: 16;
+        text-align: center;
+        padding: 2;
+        border: 1;
+        border-color: gray;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield; /* Para Firefox */
+    }
+</style>
