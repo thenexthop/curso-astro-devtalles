@@ -1,7 +1,7 @@
 import { webcrypto } from "node:crypto";
-import "./chunks/astro-designed-error-pages_CCF-U2Pj.mjs";
-import "./chunks/astro/server_CW7YkBu4.mjs";
-import { s as sequence } from "./chunks/index_BWK8Etb-.mjs";
+import "./chunks/astro-designed-error-pages_uv4O3NLo.mjs";
+import "./chunks/astro/server_fyYZyJDP.mjs";
+import { s as sequence } from "./chunks/index_C4cny-Ij.mjs";
 const isTestEnvironment = () => {
   try {
     return process.env.NODE_ENV === "test";
@@ -7243,7 +7243,7 @@ const createPathMatcher = (patterns) => {
   const matchers = precomputePathRegex([patterns || ""].flat().filter(Boolean));
   return (pathname) => matchers.some((matcher) => matcher.test(pathname));
 };
-const __vite_import_meta_env__ = { "ASSETS_PREFIX": void 0, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_bm9ybWFsLW5hcndoYWwtNzYuY2xlcmsuYWNjb3VudHMuZGV2JA", "SITE": void 0, "SSR": true };
+const __vite_import_meta_env__ = { "ASSETS_PREFIX": void 0, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_bm9ybWFsLW5hcndoYWwtNzYuY2xlcmsuYWNjb3VudHMuZGV2JA", "PUBLIC_URL": "http://localhost:4321", "SITE": void 0, "SSR": true };
 function getContextEnvVar(envVarName, contextOrLocals) {
   const locals = "locals" in contextOrLocals ? contextOrLocals.locals : contextOrLocals;
   if (locals?.runtime?.env) {

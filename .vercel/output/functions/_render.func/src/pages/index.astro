@@ -1,7 +1,25 @@
 ---
+import { actions } from "astro:actions";
 import MainLayout from "@/layouts/MainLayout.astro";
+import { ProductList } from "@/components/products/ProductList";
+import Pagination from "@/components/shared/Pagination.astro";
 
 export const prerender = false;
+
+const { searchParams } = Astro.url;
+const pageParam = Number(searchParams.get("page") ?? 1);
+
+const { data, error } = await Astro.callAction(actions.getProductsByPage, {
+	page: pageParam,
+	limit: 12,
+});
+
+if (error) {
+	console.log(error);
+	return;
+}
+
+//console.log({ productList: data.products });
 
 //const session = await auth.api.getSession({
 //	headers: Astro.request.headers,
@@ -12,9 +30,11 @@ export const prerender = false;
 ---
 
 <MainLayout title="Astro auth app">
-	<h1 class="text-3xl text-slate-800 font-bold">Astro auth app</h1>
-	<code>
-		<pre>{JSON.stringify({ temp: "TODO" }, null, 2)}</pre>
-		<pre>{JSON.stringify({ temp: "TODO" }, null, 2)}</pre>
-	</code>
+	<div class="overflow-x-auto mt-4">
+		<h2 class="text-3xl text-slate-800 font-bold mb-4">
+			Lista de Productos
+		</h2>
+		<ProductList products={data.products} client:idle />
+	</div>
+	<Pagination totalPages={data.totalPages} />
 </MainLayout>

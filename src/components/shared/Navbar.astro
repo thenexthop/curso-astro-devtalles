@@ -1,4 +1,6 @@
 ---
+import { CartCounter } from "../cart/CartCounter";
+
 const isLoggedIn = !!Astro.locals.session;
 ---
 
@@ -13,6 +15,9 @@ const isLoggedIn = !!Astro.locals.session;
     </h1>
     <div class="flex items-center">
         <ul class="flex items-center space-x-6">
+            <li>
+                <CartCounter />
+            </li>
             <li class="font-semibold text-gray-700">
                 <a href="/">Home</a>
             </li>
