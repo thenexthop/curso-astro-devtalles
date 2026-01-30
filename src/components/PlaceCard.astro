@@ -8,7 +8,7 @@ interface Props {
 }
 
 const {
-    place: { id, title, description, avg_rating, image },
+    place: { id, title, avg_rating, image },
 } = Astro.props;
 
 console.log(image);
@@ -26,7 +26,7 @@ console.log(image);
             />
         </a>
         <div class="px-5 pb-5">
-            <a href="#">
+            <a href={`/place/${id}`}>
                 <h3 class="font-semibold text-xl tracking-tight text-white">
                     {title}
                 </h3>

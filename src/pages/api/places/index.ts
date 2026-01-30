@@ -3,7 +3,7 @@ import { prisma } from '@/db';
 
 export const prerender = false
 
-export const GET: APIRoute = async ({ params, request }) => {
+export const GET: APIRoute = async () => {
 
     const places = await prisma.place.findMany();
 
